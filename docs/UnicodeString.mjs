@@ -235,7 +235,33 @@ mapEncoding.set("iso-2022-kr", "ISO_2022_kr");
 mapEncoding.set("utf-16be", "UTF_16be");
 mapEncoding.set("utf-16", "UTF_16le");
 mapEncoding.set("utf-16le", "UTF_16le");
-
+// From Unicode files:
+mapEncoding.set("BigFive", "Big5_Encoding.mjs");
+mapEncoding.set("Big5", "Big5_Encoding.mjs");
+mapEncoding.set("CCCII", "CCCII_Encoding.mjs");
+mapEncoding.set("CNS 11643-1986", "CNS_11643_1986_Encoding.mjs");
+mapEncoding.set("CNS 11643-1992", "CNS_11643_1992_Encoding.mjs");
+mapEncoding.set("EACC", "EACC_Encoding.mjs");
+mapEncoding.set("GB0", "GB_2312_80_Encoding.mjs");
+mapEncoding.set("GB 2312-80", "GB_2312_80_Encoding.mjs");
+mapEncoding.set("GB1", "GB_12345_90_Encoding.mjs");
+mapEncoding.set("GB 12345-90", "GB_12345_90_Encoding.mjs");
+mapEncoding.set("GB3", "GB_7589_87_Encoding.mjs");
+mapEncoding.set("GB 7589-87", "GB_7589_87_Encoding.mjs");
+mapEncoding.set("GB5", "GB_7590_87_Encoding.mjs");
+mapEncoding.set("GB 7590-87", "GB_7590_87_Encoding.mjs");
+mapEncoding.set("GB7", "GB7_Encoding.mjs");
+mapEncoding.set("GB 8565-89", "GB_8565_89_Encoding.mjs");
+mapEncoding.set("IBM Japanese", "IBM_Japanese_Encoding.mjs");
+mapEncoding.set("JIS X 0208-1990", "JIS_X_0208_1990_Encoding.mjs");
+mapEncoding.set("JIS X 0212-1990", "JIS_X_0212_1990_Encoding.mjs");
+mapEncoding.set("KS C 5601-1989", "KS_C_5601_1989_Encoding.mjs");
+mapEncoding.set("KS C 5657-1991", "KS_C_5657_1991_Encoding.mjs");
+mapEncoding.set("Mainland Telegraph", "PRC_Telegraph_Encoding.mjs");
+mapEncoding.set("PRC Telegraph", "PRC_Telegraph_Encoding.mjs");
+mapEncoding.set("PseudoGB1", "Pseudo_GB1_Encoding.mjs");
+mapEncoding.set("Taiwan Telegraph", "Taiwan_Telegraph_Encoding.mjs");
+mapEncoding.set("Xerox", "Xerox_Encoding.mjs");
 
 function importEncodingModule(name) {
   if (mapEncoding.has(name)) {
