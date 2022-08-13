@@ -22,7 +22,10 @@ export class EncoderStream extends TransformStream {
       start: function (controller) {
       },
       transform: function (chunk, controller) {
-        controller.enqueue(encoder.encode(chunk));
+        if (!(chunk instanceof ArrayBuffer)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
+        encoder.encode(chunk);
       },
       flush: function (controller) {
       }
@@ -30,12 +33,18 @@ export class EncoderStream extends TransformStream {
     const readableStrategy = {
       highWaterMark: 1,
       size: function (chunk) {
+        if (!(chunk instanceof ArrayBuffer)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
         return chunk.length;
       },
     };
     const writeableStrategy = {
       highWaterMark: 1,
       size: function (chunk) {
+        if (!(chunk instanceof ArrayBuffer)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
         return chunk.byteLength;
       },
     };
@@ -44,12 +53,20 @@ export class EncoderStream extends TransformStream {
 };
 
 export class DecoderStream extends TransformStream {
+  #decoder;
   constructor() {
     const transformer = {
       start: function (controller) {
+        #decoder = new TextDecoder("utf-8");
       },
       transform: function (chunk, controller) {
-        controller.enqueue(decoder.decode(chunk), { stream: true } );
+        if (!(chunk instanceof String)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
+        const str = #decoder.decode(chunk, { stream: true } );
+        for (const char of str) {
+          controller.enqueue(char);
+        }
       },
       flush: function (controller) {
       }
@@ -57,17 +74,21 @@ export class DecoderStream extends TransformStream {
     const readableStrategy = {
       highWaterMark: 1,
       size: function (chunk) {
+        if (!(chunk instanceof String)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
         return chunk.byteLength;
       },
     };
     const writeableStrategy = {
       highWaterMark: 1,
       size: function (chunk) {
+        if (!(chunk instanceof String)) {
+          throw new Error("Invalid Chunk Type: " + chunk.constructor);
+        }
         return chunk.length;
       },
     };
     super(transformer, readableStrategy, writeableStrategy);
   }
 };
-
-
