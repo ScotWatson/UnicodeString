@@ -3,8 +3,31 @@
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 */
 
+import * as ErrorHandling from "https://scotwatson.github.io/ErrorHandling/ErrorHandling.mjs";
+import * as Memory from "https://scotwatson.github.io/Memory/Memory.mjs";
 import * as "sequenceModule" from "https://scotwatson.github.io/Sequence/Sequence.mjs";
 import * as "unicodeModule" from "https://scotwatson.github.io/Unicode/Unicode.mjs";
+
+class DataSequence {
+  #block;
+  constructor(args) {
+    this.#block  = new Block({
+      byteLength: 1,
+    });
+  }
+  
+}
+
+
+export class Utf16CodePointSequence extends Memory.DataSequence {
+  constructor() {
+    super({
+      ElementClass: Memory.Uint16,
+      
+    });
+  }
+}
+
 
 export class UnicodeSequence extends sequenceModule.Sequence {
   constructor() {
